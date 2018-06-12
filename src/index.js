@@ -1,32 +1,14 @@
-function genCharArray(charA, charZ) {
-    var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
-    for (; i <= j; ++i) {
-        a.push(String.fromCharCode(i));
-    }
-    return a;
-}
-
 
 const letters = genCharArray('a', 'z');
 var testing = []
-var random = []
-for (var i = 0; i < letters.length; i++) {
-  random.push(letters[Math.floor(Math.random()*23)])
-}
-
+var random = shuffle(letters);
 
 var singleArray = random.slice(0,8);
 var doubleArray = singleArray;
 singleArray.forEach(e => doubleArray.push(e));
 
 
-function shuffle(a) {
-   for (let i = a.length - 1; i > 0; i--) {
-       const j = Math.floor(Math.random() * (i + 1));
-       [a[i], a[j]] = [a[j], a[i]];
-   }
-   return a;
-}
+
 
 var shuffledArray = shuffle(doubleArray);
 
@@ -84,7 +66,21 @@ userClick.addEventListener('click', event => {
 });
 
 
-
-
-
 })
+
+
+function shuffle(a) {
+   for (let i = a.length - 1; i > 0; i--) {
+       const j = Math.floor(Math.random() * (i + 1));
+       [a[i], a[j]] = [a[j], a[i]];
+   }
+   return a;
+}
+
+function genCharArray(charA, charZ) {
+    var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+    for (; i <= j; ++i) {
+        a.push(String.fromCharCode(i));
+    }
+    return a;
+}

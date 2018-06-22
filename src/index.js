@@ -1,6 +1,8 @@
 
+document.addEventListener("DOMContentLoaded", function() {
+
 const letters = genCharArray('a', 'z');
-var testing = []
+var points = 10000;
 var random = shuffle(letters);
 
 var singleArray = random.slice(0,8);
@@ -9,8 +11,6 @@ singleArray.forEach(e => doubleArray.push(e));
 
 var shuffledArray = shuffle(doubleArray);
 
-
-
 let gamePad = document.getElementById("pokemon-container");
 let userClick = document.getElementById("container");
 
@@ -18,7 +18,6 @@ let userClick = document.getElementById("container");
 // console.log(gamePad);
 // debugger;
 
-document.addEventListener("DOMContentLoaded", function() {
   let diff = 16;
   let revealed = null;
   let finished =0;
@@ -31,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 userClick.addEventListener('click', event => {
+  subtractPoints();
   if (event.target.localName === 'h1' && event.target.dataset.fliped == 0) {
 
     if(event.target.innerText !=='?'){
@@ -54,7 +54,7 @@ userClick.addEventListener('click', event => {
     }
 
     if(finished >= diff){
-      alert("You Won!");
+      alert(`You Won! Your score: ${points} `);
     }
 
 
@@ -66,10 +66,14 @@ userClick.addEventListener('click', event => {
 }); //userClick.addEventListener
 
 
-});
+
+function subtractPoints() {
+  setTimeout(()=>{point--;} ,100)
+}
 
 function flipAllBack() {
   const allTexts = document.getElementsByTagName("H1");
+
   [...allTexts].forEach(e => {
     if(e.dataset.fliped == 0) e.innerText = "?";
   });
@@ -112,3 +116,6 @@ function genCharArray(charA, charZ) {
     }
     return a;
 }
+
+});
+
